@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlCountry",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Country"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

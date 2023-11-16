@@ -1,0 +1,16 @@
+{
+	"name": "SHIRlink",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=covid19-sqlserver-h4zh4tp4fetik.database.windows.net;initial catalog=covid19;user id=sqladmin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3NWU4YzU3Yy1jZjExLTQzMTYtYWFjYi01OTE1ZjI2ODcxMzIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SHIRteam13",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

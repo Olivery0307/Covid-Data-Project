@@ -1,0 +1,21 @@
+{
+	"name": "ParquetMetricsVM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blobVM",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SQLVM_metrics.parquet",
+				"container": "covidvm"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

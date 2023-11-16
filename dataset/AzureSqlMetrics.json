@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlMetrics",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Covid19_Metrics"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

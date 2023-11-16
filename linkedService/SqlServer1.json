@@ -1,0 +1,16 @@
+{
+	"name": "SqlServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=sqlvmSource;initial catalog=sqlvmDB;user id=sqladmin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjNDFkYWM0Yy03ZDljLTQzZGQtYjE4Zi01MTc3YmVmM2E4NzEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SHIRteam13",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

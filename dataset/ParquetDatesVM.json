@@ -1,0 +1,21 @@
+{
+	"name": "ParquetDatesVM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blobVM",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SQLVM_dates.parquet",
+				"container": "covidvm"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

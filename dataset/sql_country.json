@@ -1,0 +1,21 @@
+{
+	"name": "sql_country",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStoragesql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "sqldata_country.parquet",
+				"container": "covidsql"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
