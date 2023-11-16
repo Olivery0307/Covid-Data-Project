@@ -359,8 +359,7 @@
 									"path": "$['H8_Protection of elderly people']"
 								},
 								"sink": {
-									"name": "H8_Protection_of_elderly people",
-									"type": "Double"
+									"name": "H8_Protection_of_elderly_people"
 								}
 							},
 							{
