@@ -226,8 +226,7 @@
 									"path": "$['E1_Income support']"
 								},
 								"sink": {
-									"name": "E1_Income support",
-									"type": "Double"
+									"name": "E1_Income_support"
 								}
 							},
 							{
@@ -289,8 +288,7 @@
 									"path": "$['H2_Testing policy']"
 								},
 								"sink": {
-									"name": "H2_Testing policy",
-									"type": "Double"
+									"name": "H2_Testing_policy"
 								}
 							},
 							{
