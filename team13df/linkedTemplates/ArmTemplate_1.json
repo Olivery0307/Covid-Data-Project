@@ -89,6 +89,33 @@
 									},
 									{
 										"source": {
+											"path": "$['RegionName']"
+										},
+										"sink": {
+											"name": "RegionName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['RegionCode']"
+										},
+										"sink": {
+											"name": "RegionCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Jurisdiction']"
+										},
+										"sink": {
+											"name": "Jurisdiction",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
 											"path": "$['Date']"
 										},
 										"sink": {
@@ -101,7 +128,7 @@
 											"path": "$['C1_School closing']"
 										},
 										"sink": {
-											"name": "C1_School_closing",
+											"name": "C1_School closing",
 											"type": "Double"
 										}
 									},
@@ -111,7 +138,7 @@
 										},
 										"sink": {
 											"name": "C1_Flag",
-											"type": "Double"
+											"type": "Boolean"
 										}
 									},
 									{
@@ -119,7 +146,7 @@
 											"path": "$['C2_Workplace closing']"
 										},
 										"sink": {
-											"name": "C2_Workplace_closing",
+											"name": "C2_Workplace closing",
 											"type": "Double"
 										}
 									},
@@ -137,7 +164,7 @@
 											"path": "$['C3_Cancel public events']"
 										},
 										"sink": {
-											"name": "C3_Cancel_public_events",
+											"name": "C3_Cancel public events",
 											"type": "Double"
 										}
 									},
@@ -155,7 +182,7 @@
 											"path": "$['C4_Restrictions on gatherings']"
 										},
 										"sink": {
-											"name": "C4_Restrictions_on_gatherings",
+											"name": "C4_Restrictions on gatherings",
 											"type": "Double"
 										}
 									},
@@ -173,7 +200,7 @@
 											"path": "$['C5_Close public transport']"
 										},
 										"sink": {
-											"name": "C5_Close_public_transport",
+											"name": "C5_Close public transport",
 											"type": "Double"
 										}
 									},
@@ -191,7 +218,7 @@
 											"path": "$['C6_Stay at home requirements']"
 										},
 										"sink": {
-											"name": "C6_Stay_at_home_requirements",
+											"name": "C6_Stay at home requirements",
 											"type": "Double"
 										}
 									},
@@ -209,7 +236,7 @@
 											"path": "$['C7_Restrictions on internal movement']"
 										},
 										"sink": {
-											"name": "C7_Restrictions_on_internal_movement",
+											"name": "C7_Restrictions on internal movement",
 											"type": "Double"
 										}
 									},
@@ -227,7 +254,7 @@
 											"path": "$['C8_International travel controls']"
 										},
 										"sink": {
-											"name": "C8_International_travel_controls",
+											"name": "C8_International travel controls",
 											"type": "Double"
 										}
 									},
@@ -236,7 +263,7 @@
 											"path": "$['E1_Income support']"
 										},
 										"sink": {
-											"name": "E1_Income_support",
+											"name": "E1_Income support",
 											"type": "Double"
 										}
 									},
@@ -254,7 +281,7 @@
 											"path": "$['E2_Debt contract relief']"
 										},
 										"sink": {
-											"name": "E2_Debt_contract_relief",
+											"name": "E2_Debt contract relief",
 											"type": "Double"
 										}
 									},
@@ -263,7 +290,7 @@
 											"path": "$['E3_Fiscal measures']"
 										},
 										"sink": {
-											"name": "E3_Fiscal_measures",
+											"name": "E3_Fiscal measures",
 											"type": "Double"
 										}
 									},
@@ -272,7 +299,7 @@
 											"path": "$['E4_International support']"
 										},
 										"sink": {
-											"name": "E4_International_support",
+											"name": "E4_International support",
 											"type": "Double"
 										}
 									},
@@ -281,7 +308,7 @@
 											"path": "$['H1_Public information campaigns']"
 										},
 										"sink": {
-											"name": "H1_Public_information_campaigns",
+											"name": "H1_Public information campaigns",
 											"type": "Double"
 										}
 									},
@@ -299,7 +326,7 @@
 											"path": "$['H2_Testing policy']"
 										},
 										"sink": {
-											"name": "H2_Testing_policy",
+											"name": "H2_Testing policy",
 											"type": "Double"
 										}
 									},
@@ -308,7 +335,7 @@
 											"path": "$['H3_Contact tracing']"
 										},
 										"sink": {
-											"name": "H3_Contact_tracing",
+											"name": "H3_Contact tracing",
 											"type": "Double"
 										}
 									},
@@ -317,7 +344,7 @@
 											"path": "$['H4_Emergency investment in healthcare']"
 										},
 										"sink": {
-											"name": "H4_Emergency_investment_in_healthcare",
+											"name": "H4_Emergency investment in healthcare",
 											"type": "Double"
 										}
 									},
@@ -326,7 +353,70 @@
 											"path": "$['H5_Investment in vaccines']"
 										},
 										"sink": {
-											"name": "H5_Investment_in_vaccines",
+											"name": "H5_Investment in vaccines",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['H6_Facial Coverings']"
+										},
+										"sink": {
+											"name": "H6_Facial Coverings",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['H6_Flag']"
+										},
+										"sink": {
+											"name": "H6_Flag",
+											"type": "Boolean"
+										}
+									},
+									{
+										"source": {
+											"path": "$['H7_Vaccination policy']"
+										},
+										"sink": {
+											"name": "H7_Vaccination policy",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['H7_Flag']"
+										},
+										"sink": {
+											"name": "H7_Flag",
+											"type": "Boolean"
+										}
+									},
+									{
+										"source": {
+											"path": "$['H8_Protection of elderly people']"
+										},
+										"sink": {
+											"name": "H8_Protection of elderly people",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['H8_Flag']"
+										},
+										"sink": {
+											"name": "H8_Flag",
+											"type": "Boolean"
+										}
+									},
+									{
+										"source": {
+											"path": "$['M1_Wildcard']"
+										},
+										"sink": {
+											"name": "M1_Wildcard",
 											"type": "Double"
 										}
 									},
@@ -347,9 +437,91 @@
 											"name": "StringencyIndexForDisplay",
 											"type": "Double"
 										}
+									},
+									{
+										"source": {
+											"path": "$['StringencyLegacyIndex']"
+										},
+										"sink": {
+											"name": "StringencyLegacyIndex",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['StringencyLegacyIndexForDisplay']"
+										},
+										"sink": {
+											"name": "StringencyLegacyIndexForDisplay",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['GovernmentResponseIndex']"
+										},
+										"sink": {
+											"name": "GovernmentResponseIndex",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['GovernmentResponseIndexForDisplay']"
+										},
+										"sink": {
+											"name": "GovernmentResponseIndexForDisplay",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ContainmentHealthIndex']"
+										},
+										"sink": {
+											"name": "ContainmentHealthIndex",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ContainmentHealthIndexForDisplay']"
+										},
+										"sink": {
+											"name": "ContainmentHealthIndexForDisplay",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['EconomicSupportIndex']"
+										},
+										"sink": {
+											"name": "EconomicSupportIndex",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['EconomicSupportIndexForDisplay']"
+										},
+										"sink": {
+											"name": "EconomicSupportIndexForDisplay",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['id']"
+										},
+										"sink": {
+											"name": "id",
+											"type": "String"
+										}
 									}
 								],
-								"collectionReference": ""
+								"collectionReference": "",
+								"mapComplexValuesToString": true
 							}
 						},
 						"inputs": [
