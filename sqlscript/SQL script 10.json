@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 10",
+	"properties": {
+		"content": {
+			"query": "CREATE VIEW dbo.view_recoveries AS\nSELECT\n    ID AS RecoveriesID,\n    Updated,\n    Recovered,\n    Recovered_Change\nFROM\n    dbo.recoveries;\n    ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "covid",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
