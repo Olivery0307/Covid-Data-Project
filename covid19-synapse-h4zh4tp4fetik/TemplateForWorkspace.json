@@ -2019,6 +2019,26 @@
 				"type": "SqlQuery"
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 8')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nCREATE EXTERNAL TABLE [dbo].[fact]\n(\n    [Id] INT,\n    [PocilyId] INT,\n    [CasesID] INT, \n    [DeathsID] INT, \n    [RecoveriesID] INT, \n    [DateKey] INT, \n    [Country] NVARCHAR(50)\n)\nWITH\n(\n    LOCATION = '/folder/file',\n    DATA_SOURCE = covidods_datasourcesteam13_dfs_core_windows_net,\n    FILE_FORMAT = [SynapseParquetFormat]\n)\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "covid",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
 		}
 	]
 }
