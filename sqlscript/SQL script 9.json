@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 9",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [Id]\n,[PocilyId]\n,[CasesID]\n,[DeathsID]\n,[RecoveriesID]\n,[DateKey]\n,[Country]\n FROM [dbo].[fact]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "covid",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
