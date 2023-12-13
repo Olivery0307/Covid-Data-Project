@@ -1,0 +1,21 @@
+{
+	"name": "Dates",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageODS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "dates.parquet",
+				"container": "covidods"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,21 @@
+{
+	"name": "Cases",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageODS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "cases.parquet",
+				"container": "covidods"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
