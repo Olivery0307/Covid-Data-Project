@@ -1,9 +1,69 @@
-<mxfile host="app.diagrams.net" modified="2023-12-07T18:32:50.801Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" version="22.1.7" etag="A3xu1CVVXBDzvjlY14DW" type="github">
+<mxfile host="app.diagrams.net" modified="2023-12-15T18:55:40.088Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="lOD1oxfX4NZbRYbzn3Ny" version="22.1.11" type="github">
   <diagram name="Page-1" id="jt3PBPhwUnPafhOXya_J">
-    <mxGraphModel>
+    <mxGraphModel dx="909" dy="581" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;horizontal=1;strokeWidth=2;" edge="1" parent="1" source="L3UYxXxdt7HCs2LZCHzP-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="155" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-1" value="&lt;p style=&quot;line-height: 500%;&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot; face=&quot;Georgia&quot;&gt;Virtual Machine&lt;/font&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacingTop=-70;" vertex="1" parent="1">
+          <mxGeometry x="200" y="100" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-2" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://static-00.iconduck.com/assets.00/virtual-machines-icon-512x464-nlf7gddb.png;" vertex="1" parent="1">
+          <mxGeometry x="224.69" y="139" width="70.62" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;horizontal=1;strokeWidth=2;" edge="1" parent="1" source="L3UYxXxdt7HCs2LZCHzP-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="285" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-3" value="&lt;p style=&quot;line-height: 500%;&quot;&gt;&lt;font face=&quot;Georgia&quot;&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Cosmos DB&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacingTop=-70;" vertex="1" parent="1">
+          <mxGeometry x="200" y="230" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-4" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://devblogs.microsoft.com/cosmosdb/wp-content/uploads/sites/52/2019/10/FeaturedDefault.png;" vertex="1" parent="1">
+          <mxGeometry x="204" y="267" width="112" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;horizontal=1;strokeWidth=2;" edge="1" parent="1" source="L3UYxXxdt7HCs2LZCHzP-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="415" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-5" value="&lt;p style=&quot;line-height: 500%;&quot;&gt;&lt;font face=&quot;Georgia&quot;&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;SQL&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;spacingTop=-70;" vertex="1" parent="1">
+          <mxGeometry x="200" y="360" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-6" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://static-00.iconduck.com/assets.00/sql-database-sql-azure-icon-1955x2048-4pmty46t.png;" vertex="1" parent="1">
+          <mxGeometry x="227.34" y="395.61" width="65.31" height="68.39" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-7" value="&lt;font style=&quot;font-size: 18px;&quot; face=&quot;Garamond&quot;&gt;Data Lake&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=-300;" vertex="1" parent="1">
+          <mxGeometry x="380" y="100" width="140" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-11" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="166" width="120" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-13" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="190" width="120" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-14" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="211" width="120" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-15" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="234" width="120" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-16" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="360" width="120" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-17" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="384" width="120" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-18" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="405" width="120" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="L3UYxXxdt7HCs2LZCHzP-19" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="428" width="120" height="10" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
