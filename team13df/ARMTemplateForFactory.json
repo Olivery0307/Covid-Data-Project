@@ -1047,7 +1047,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "population",
+								"referenceName": "populationcsv",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1067,7 +1067,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/population')]",
+				"[concat(variables('factoryId'), '/datasets/populationcsv')]",
 				"[concat(variables('factoryId'), '/datasets/Populationparquet')]"
 			]
 		},
@@ -1786,7 +1786,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/population')]",
+			"name": "[concat(parameters('factoryName'), '/populationcsv')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1807,20 +1807,7 @@
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
-				"schema": [
-					{
-						"name": "Country",
-						"type": "String"
-					},
-					{
-						"name": "Population(2020)",
-						"type": "String"
-					},
-					{
-						"name": "Population(2021)",
-						"type": "String"
-					}
-				]
+				"schema": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
