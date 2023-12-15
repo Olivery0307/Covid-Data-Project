@@ -1,0 +1,689 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "team13df"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/vmsql1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SHIRlink",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "Country",
+						"type": "varchar"
+					},
+					{
+						"name": "CountryCode",
+						"type": "varchar"
+					},
+					{
+						"name": "Latitude",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 5
+					},
+					{
+						"name": "Longitude",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 5
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Country"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ODS')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ParquetMetricsVM",
+								"type": "DatasetReference"
+							},
+							"name": "MetricsVM"
+						},
+						{
+							"dataset": {
+								"referenceName": "sql_metrics",
+								"type": "DatasetReference"
+							},
+							"name": "MetricsSQL"
+						},
+						{
+							"dataset": {
+								"referenceName": "sql_dates",
+								"type": "DatasetReference"
+							},
+							"name": "DatesSQL"
+						},
+						{
+							"dataset": {
+								"referenceName": "sql_country",
+								"type": "DatasetReference"
+							},
+							"name": "CountrySQL"
+						},
+						{
+							"dataset": {
+								"referenceName": "cosmos_policy",
+								"type": "DatasetReference"
+							},
+							"name": "PolicyDB"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "Cases",
+								"type": "DatasetReference"
+							},
+							"name": "Cases"
+						},
+						{
+							"dataset": {
+								"referenceName": "Deaths",
+								"type": "DatasetReference"
+							},
+							"name": "Deaths"
+						},
+						{
+							"dataset": {
+								"referenceName": "Recoveries",
+								"type": "DatasetReference"
+							},
+							"name": "Recoveries"
+						},
+						{
+							"dataset": {
+								"referenceName": "Dates",
+								"type": "DatasetReference"
+							},
+							"name": "Dates"
+						},
+						{
+							"dataset": {
+								"referenceName": "Policies",
+								"type": "DatasetReference"
+							},
+							"name": "Policies"
+						},
+						{
+							"dataset": {
+								"referenceName": "Countries",
+								"type": "DatasetReference"
+							},
+							"name": "Countries"
+						}
+					],
+					"transformations": [
+						{
+							"name": "MetricsUnion"
+						},
+						{
+							"name": "Case"
+						},
+						{
+							"name": "Death"
+						},
+						{
+							"name": "Recovery"
+						},
+						{
+							"name": "Date"
+						},
+						{
+							"name": "Policy"
+						},
+						{
+							"name": "Country"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          ID as integer,",
+						"          Updated as date,",
+						"          Confirmed as integer,",
+						"          Confirmed_Change as integer,",
+						"          Deaths as integer,",
+						"          Deaths_Change as integer,",
+						"          Recovered as integer,",
+						"          Recovered_Change as integer,",
+						"          Latitude as decimal(10,5),",
+						"          Longitude as decimal(10,5),",
+						"          ISO2 as string,",
+						"          ISO3 as string,",
+						"          Country_Region as string,",
+						"          load_time as timestamp",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     format: 'parquet') ~> MetricsVM",
+						"source(output(",
+						"          ID as integer,",
+						"          Updated as date,",
+						"          Confirmed as integer,",
+						"          Confirmed_Change as integer,",
+						"          Deaths as integer,",
+						"          Deaths_Change as integer,",
+						"          Recovered as integer,",
+						"          Recovered_Change as integer,",
+						"          Latitude as decimal(10,5),",
+						"          Longitude as decimal(10,5),",
+						"          ISO2 as string,",
+						"          ISO3 as string,",
+						"          Country_Region as string,",
+						"          load_time as timestamp",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     format: 'parquet') ~> MetricsSQL",
+						"source(output(",
+						"          DateKey as integer,",
+						"          FullDate as date,",
+						"          isWeekDay as boolean,",
+						"          DayOfWeek as integer,",
+						"          DayOfMonth as integer,",
+						"          DayOfQuarter as integer,",
+						"          DayOfYear as integer,",
+						"          DayName as string,",
+						"          WeekOfYear as integer,",
+						"          WeekName as string,",
+						"          MonthOfYear as integer,",
+						"          MonthName as string,",
+						"          CalendarQuarter as integer,",
+						"          CalendarQuarterName as string,",
+						"          CalendarYear as integer,",
+						"          FiscalMonth as integer,",
+						"          FiscalMonthName as string,",
+						"          FiscalQuarter as integer,",
+						"          FiscalQuarterName as string,",
+						"          FiscalYear as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     format: 'parquet') ~> DatesSQL",
+						"source(output(",
+						"          Country as string,",
+						"          CountryCode as string,",
+						"          Latitude as decimal(10,5),",
+						"          Longitude as decimal(10,5)",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     format: 'parquet') ~> CountrySQL",
+						"source(output(",
+						"          CountryName as string,",
+						"          CountryCode as string,",
+						"          RegionName as string,",
+						"          RegionCode as string,",
+						"          Jurisdiction as string,",
+						"          Date as date,",
+						"          C1_School_closing as double,",
+						"          C1_Flag as boolean,",
+						"          C2_Workplace_closing as double,",
+						"          C2_Flag as boolean,",
+						"          C3_Cancel_public_events as double,",
+						"          C3_Flag as boolean,",
+						"          C4_Restrictions_on_gatherings as double,",
+						"          C4_Flag as boolean,",
+						"          C5_Close_public_transport as double,",
+						"          C5_Flag as boolean,",
+						"          C6_Stay_at_home_requirements as double,",
+						"          C6_Flag as boolean,",
+						"          C7_Restrictions_on_internal_movement as double,",
+						"          C7_Flag as boolean,",
+						"          C8_International_travel_controls as double,",
+						"          E1_Income_support as long,",
+						"          E1_Flag as boolean,",
+						"          E2_Debt_contract_relief as double,",
+						"          E3_Fiscal_measures as double,",
+						"          E4_International_support as double,",
+						"          H1_Public_information_campaigns as double,",
+						"          H1_Flag as boolean,",
+						"          H2_Testing_policy as long,",
+						"          H3_Contact_tracing as double,",
+						"          H4_Emergency_investment_in_healthcare as double,",
+						"          H5_Investment_in_vaccines as double,",
+						"          H6_Facial_Coverings as double,",
+						"          H6_Flag as boolean,",
+						"          H7_Vaccination_policy as double,",
+						"          H7_Flag as boolean,",
+						"          H8_Protection_of_elderly_people as long,",
+						"          H8_Flag as boolean,",
+						"          M1_Wildcard as double,",
+						"          StringencyIndex as double,",
+						"          StringencyIndexForDisplay as double,",
+						"          StringencyLegacyIndex as double,",
+						"          StringencyLegacyIndexForDisplay as double,",
+						"          GovernmentResponseIndex as double,",
+						"          GovernmentResponseIndexForDisplay as double,",
+						"          ContainmentHealthIndex as double,",
+						"          ContainmentHealthIndexForDisplay as double,",
+						"          EconomicSupportIndex as double,",
+						"          EconomicSupportIndexForDisplay as double,",
+						"          id as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     format: 'parquet') ~> PolicyDB",
+						"MetricsVM, MetricsSQL union(byName: true)~> MetricsUnion",
+						"MetricsUnion select(mapColumn(",
+						"          CasesID = ID,",
+						"          Updated,",
+						"          Confirmed,",
+						"          Confirmed_Change,",
+						"          Country_Region",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> Case",
+						"MetricsUnion select(mapColumn(",
+						"          DeathsID = ID,",
+						"          Updated,",
+						"          Deaths,",
+						"          Deaths_Change,",
+						"          Country_Region",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> Death",
+						"MetricsUnion select(mapColumn(",
+						"          RecoveriesID = ID,",
+						"          Updated,",
+						"          Recovered,",
+						"          Recovered_Change,",
+						"          Country_Region",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> Recovery",
+						"DatesSQL select(mapColumn(",
+						"          DateKey = FullDate,",
+						"          isWeekDay,",
+						"          DayOfWeek,",
+						"          DayOfMonth,",
+						"          DayOfQuarter,",
+						"          DayOfYear,",
+						"          DayName,",
+						"          WeekOfYear,",
+						"          WeekName,",
+						"          MonthOfYear,",
+						"          MonthName,",
+						"          CalendarQuarter,",
+						"          CalendarQuarterName,",
+						"          CalendarYear,",
+						"          FiscalMonth,",
+						"          FiscalMonthName,",
+						"          FiscalQuarter,",
+						"          FiscalQuarterName,",
+						"          FiscalYear",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> Date",
+						"PolicyDB select(mapColumn(",
+						"          CountryName,",
+						"          CountryCode,",
+						"          RegionName,",
+						"          RegionCode,",
+						"          Jurisdiction,",
+						"          DateKey = Date,",
+						"          C1_School_closing,",
+						"          C1_Flag,",
+						"          C2_Workplace_closing,",
+						"          C2_Flag,",
+						"          C3_Cancel_public_events,",
+						"          C3_Flag,",
+						"          C4_Restrictions_on_gatherings,",
+						"          C4_Flag,",
+						"          C5_Close_public_transport,",
+						"          C5_Flag,",
+						"          C6_Stay_at_home_requirements,",
+						"          C6_Flag,",
+						"          C7_Restrictions_on_internal_movement,",
+						"          C7_Flag,",
+						"          C8_International_travel_controls,",
+						"          E1_Income_support,",
+						"          E1_Flag,",
+						"          E2_Debt_contract_relief,",
+						"          E3_Fiscal_measures,",
+						"          E4_International_support,",
+						"          H1_Public_information_campaigns,",
+						"          H1_Flag,",
+						"          H2_Testing_policy,",
+						"          H3_Contact_tracing,",
+						"          H4_Emergency_investment_in_healthcare,",
+						"          H5_Investment_in_vaccines,",
+						"          H6_Facial_Coverings,",
+						"          H6_Flag,",
+						"          H7_Vaccination_policy,",
+						"          H7_Flag,",
+						"          H8_Protection_of_elderly_people,",
+						"          H8_Flag,",
+						"          M1_Wildcard,",
+						"          StringencyIndex,",
+						"          StringencyIndexForDisplay,",
+						"          StringencyLegacyIndex,",
+						"          StringencyLegacyIndexForDisplay,",
+						"          GovernmentResponseIndex,",
+						"          GovernmentResponseIndexForDisplay,",
+						"          ContainmentHealthIndex,",
+						"          ContainmentHealthIndexForDisplay,",
+						"          EconomicSupportIndex,",
+						"          EconomicSupportIndexForDisplay,",
+						"          PolicyID = id",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> Policy",
+						"CountrySQL select(mapColumn(",
+						"          CountryID = Country,",
+						"          CountryCode,",
+						"          Latitude,",
+						"          Longitude",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> Country",
+						"Case sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     partitionFileNames:['cases.parquet'],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> Cases",
+						"Death sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     partitionFileNames:['deaths.parquet'],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> Deaths",
+						"Recovery sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     partitionFileNames:['recoveries.parquet'],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> Recoveries",
+						"Date sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     partitionFileNames:['dates.parquet'],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> Dates",
+						"Policy sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     partitionFileNames:['policies.parquet'],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> Policies",
+						"Country sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     partitionFileNames:['countries.parquet'],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> Countries"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ODS')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow ODS",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "ODS",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"MetricsVM": {},
+									"MetricsSQL": {},
+									"DatesSQL": {},
+									"CountrySQL": {},
+									"PolicyDB": {},
+									"Cases": {},
+									"Deaths": {},
+									"Recoveries": {},
+									"Dates": {},
+									"Policies": {},
+									"Countries": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-12-07T23:14:46Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/ODS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VmSql')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Country",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "vmsql1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ParquetCountryVM",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "covid metrics",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SqlServerTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ParquetMetricsVM",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "date",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SqlServerTable2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ParquetDatesVM",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-11-09T18:16:00Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/vmsql1')]"
+			]
+		}
+	]
+}

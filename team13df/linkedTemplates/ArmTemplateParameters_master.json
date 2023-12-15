@@ -8,7 +8,13 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
+		"AzureBlobStorageODS_connectionString": {
+			"value": ""
+		},
 		"AzureBlobStoragesql_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorageteam13_accountKey": {
 			"value": ""
 		},
 		"AzureSqlDatabase1_connectionString": {
@@ -26,11 +32,20 @@
 		"blobVM_connectionString": {
 			"value": ""
 		},
+		"covid19-synapse-h4zh4tp4fetik-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:covid19-synapse-h4zh4tp4fetik.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
 		"link3VM_connectionString": {
 			"value": ""
 		},
 		"sqlvmmetrics_connectionString": {
 			"value": ""
+		},
+		"AzureDataLakeStorageteam13_properties_typeProperties_url": {
+			"value": "https://datasourcesteam13.dfs.core.windows.net/"
+		},
+		"covid19-synapse-h4zh4tp4fetik-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://covid19h4zh4tp4fetik.dfs.core.windows.net"
 		},
 		"containerUri": {
 			"value": ""
