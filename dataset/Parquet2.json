@@ -1,17 +1,17 @@
 {
-	"name": "Populationparquet",
+	"name": "Parquet2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorageODS",
+			"referenceName": "newfact",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
-				"fileName": "population.parquet",
-				"container": "covidods"
+				"type": "AzureBlobFSLocation",
+				"fileName": "policies.parquet",
+				"fileSystem": "covidods"
 			},
 			"compressionCodec": "snappy"
 		},

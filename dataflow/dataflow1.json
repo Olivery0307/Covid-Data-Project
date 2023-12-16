@@ -1,0 +1,307 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlMetrics",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ParquetMetricsVM",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				},
+				{
+					"dataset": {
+						"referenceName": "Countries",
+						"type": "DatasetReference"
+					},
+					"name": "source3"
+				},
+				{
+					"dataset": {
+						"referenceName": "cosmos_policy",
+						"type": "DatasetReference"
+					},
+					"name": "policy"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "Parquet2",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "union1"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "surrogateKey1"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "cast1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "join2"
+				},
+				{
+					"name": "cast2"
+				},
+				{
+					"name": "derivedColumn2"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "surrogateKey2"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ID as integer,",
+				"          Updated as date,",
+				"          Confirmed as integer,",
+				"          Confirmed_Change as integer,",
+				"          Deaths as integer,",
+				"          Deaths_Change as integer,",
+				"          Recovered as integer,",
+				"          Recovered_Change as integer,",
+				"          Latitude as decimal(10,5),",
+				"          Longitude as decimal(10,5),",
+				"          ISO2 as string,",
+				"          ISO3 as string,",
+				"          Country_Region as string,",
+				"          load_time as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source(output(",
+				"          ID as integer,",
+				"          Updated as date,",
+				"          Confirmed as integer,",
+				"          Confirmed_Change as integer,",
+				"          Deaths as integer,",
+				"          Deaths_Change as integer,",
+				"          Recovered as integer,",
+				"          Recovered_Change as integer,",
+				"          Latitude as decimal(10,5),",
+				"          Longitude as decimal(10,5),",
+				"          ISO2 as string,",
+				"          ISO3 as string,",
+				"          Country_Region as string,",
+				"          load_time as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> source2",
+				"source(output(",
+				"          Country_Name as string,",
+				"          CountryCode as string,",
+				"          Latitude as decimal(10,5),",
+				"          Longitude as decimal(10,5),",
+				"          Country_id as long",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> source3",
+				"source(output(",
+				"          CountryName as string,",
+				"          CountryCode as string,",
+				"          RegionName as string,",
+				"          RegionCode as string,",
+				"          Jurisdiction as string,",
+				"          Date as timestamp,",
+				"          C1_School_closing as double,",
+				"          C1_Flag as boolean,",
+				"          C2_Workplace_closing as double,",
+				"          C2_Flag as boolean,",
+				"          C3_Cancel_public_events as double,",
+				"          C3_Flag as boolean,",
+				"          C4_Restrictions_on_gatherings as double,",
+				"          C4_Flag as boolean,",
+				"          C5_Close_public_transport as double,",
+				"          C5_Flag as boolean,",
+				"          C6_Stay_at_home_requirements as double,",
+				"          C6_Flag as boolean,",
+				"          C7_Restrictions_on_internal_movement as double,",
+				"          C7_Flag as boolean,",
+				"          C8_International_travel_controls as double,",
+				"          E1_Income_support as long,",
+				"          E1_Flag as boolean,",
+				"          E2_Debt_contract_relief as double,",
+				"          E3_Fiscal_measures as double,",
+				"          E4_International_support as double,",
+				"          H1_Public_information_campaigns as double,",
+				"          H1_Flag as boolean,",
+				"          H2_Testing_policy as long,",
+				"          H3_Contact_tracing as double,",
+				"          H4_Emergency_investment_in_healthcare as double,",
+				"          H5_Investment_in_vaccines as double,",
+				"          H6_Facial_Coverings as double,",
+				"          H6_Flag as boolean,",
+				"          H7_Vaccination_policy as double,",
+				"          H7_Flag as boolean,",
+				"          H8_Protection_of_elderly_people as long,",
+				"          H8_Flag as boolean,",
+				"          M1_Wildcard as double,",
+				"          StringencyIndex as double,",
+				"          StringencyIndexForDisplay as double,",
+				"          StringencyLegacyIndex as double,",
+				"          StringencyLegacyIndexForDisplay as double,",
+				"          GovernmentResponseIndex as double,",
+				"          GovernmentResponseIndexForDisplay as double,",
+				"          ContainmentHealthIndex as double,",
+				"          ContainmentHealthIndexForDisplay as double,",
+				"          EconomicSupportIndex as double,",
+				"          EconomicSupportIndexForDisplay as double,",
+				"          id as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> policy",
+				"source1, source2 union(byName: true)~> union1",
+				"join1 select(mapColumn(",
+				"          MetricsKey = ID,",
+				"          DateKey = Updated,",
+				"          CountryKey = Country_id",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"derivedColumn1 keyGenerate(output(Fact_key as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1",
+				"union1, source3 join(Country_Region == Country_Name,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"select1 cast(output(",
+				"          DateKey as string",
+				"     ),",
+				"     errors: true) ~> cast1",
+				"cast1 derive(DateKey = replace(DateKey, '-', '')) ~> derivedColumn1",
+				"policy, source3 join(CountryName == Country_Name,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join2",
+				"join2 cast(output(",
+				"          Date as string",
+				"     ),",
+				"     errors: true) ~> cast2",
+				"cast2 derive(Date = substring(replace(Date, '-', ''), 0, 8)) ~> derivedColumn2",
+				"derivedColumn2 select(mapColumn(",
+				"          Jurisdiction,",
+				"          DateKey = Date,",
+				"          C1_School_closing,",
+				"          C1_Flag,",
+				"          C2_Workplace_closing,",
+				"          C2_Flag,",
+				"          C3_Cancel_public_events,",
+				"          C3_Flag,",
+				"          C4_Restrictions_on_gatherings,",
+				"          C4_Flag,",
+				"          C5_Close_public_transport,",
+				"          C5_Flag,",
+				"          C6_Stay_at_home_requirements,",
+				"          C6_Flag,",
+				"          C7_Restrictions_on_internal_movement,",
+				"          C7_Flag,",
+				"          C8_International_travel_controls,",
+				"          E1_Income_support,",
+				"          E1_Flag,",
+				"          E2_Debt_contract_relief,",
+				"          E3_Fiscal_measures,",
+				"          E4_International_support,",
+				"          H1_Public_information_campaigns,",
+				"          H1_Flag,",
+				"          H2_Testing_policy,",
+				"          H3_Contact_tracing,",
+				"          H4_Emergency_investment_in_healthcare,",
+				"          H5_Investment_in_vaccines,",
+				"          H6_Facial_Coverings,",
+				"          H6_Flag,",
+				"          H7_Vaccination_policy,",
+				"          H7_Flag,",
+				"          H8_Protection_of_elderly_people,",
+				"          H8_Flag,",
+				"          M1_Wildcard,",
+				"          StringencyIndex,",
+				"          StringencyIndexForDisplay,",
+				"          StringencyLegacyIndex,",
+				"          StringencyLegacyIndexForDisplay,",
+				"          GovernmentResponseIndex,",
+				"          GovernmentResponseIndexForDisplay,",
+				"          ContainmentHealthIndex,",
+				"          ContainmentHealthIndexForDisplay,",
+				"          EconomicSupportIndex,",
+				"          EconomicSupportIndexForDisplay,",
+				"          Countryid = Country_id",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"select2 keyGenerate(output(PolicyID as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey2",
+				"surrogateKey1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          CasesID as integer,",
+				"          Updated as date,",
+				"          Confirmed as integer,",
+				"          Confirmed_Change as integer,",
+				"          Country_Region as string",
+				"     ),",
+				"     format: 'parquet',",
+				"     partitionFileNames:['metrics.parquet'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1",
+				"surrogateKey2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2"
+			]
+		}
+	}
+}
