@@ -1,0 +1,195 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "team13df"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureBlobStorageODS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageODS'"
+		},
+		"AzureBlobStoragesql_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStoragesql'"
+		},
+		"AzureDataLakeStorageteam13_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorageteam13'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"CosmosDbNoSql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbNoSql1'"
+		},
+		"SHIRlink_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SHIRlink'"
+		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
+		"blobVM_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'blobVM'"
+		},
+		"covid19-synapse-h4zh4tp4fetik-WorkspaceDefaultSqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'covid19-synapse-h4zh4tp4fetik-WorkspaceDefaultSqlServer'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:covid19-synapse-h4zh4tp4fetik.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"link3VM_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'link3VM'"
+		},
+		"newfact_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'newfact'"
+		},
+		"sqlvmmetrics_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqlvmmetrics'"
+		},
+		"AzureDataLakeStorageteam13_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datasourcesteam13.dfs.core.windows.net/"
+		},
+		"covid19-synapse-h4zh4tp4fetik-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covid19h4zh4tp4fetik.dfs.core.windows.net"
+		},
+		"newfact_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datasourcesteam13.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "team13df_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureBlobStorageODS_connectionString": {
+						"value": "[parameters('AzureBlobStorageODS_connectionString')]"
+					},
+					"AzureBlobStoragesql_connectionString": {
+						"value": "[parameters('AzureBlobStoragesql_connectionString')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"CosmosDbNoSql1_connectionString": {
+						"value": "[parameters('CosmosDbNoSql1_connectionString')]"
+					},
+					"blobVM_connectionString": {
+						"value": "[parameters('blobVM_connectionString')]"
+					},
+					"newfact_accountKey": {
+						"value": "[parameters('newfact_accountKey')]"
+					},
+					"newfact_properties_typeProperties_url": {
+						"value": "[parameters('newfact_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "team13df_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorageteam13_accountKey": {
+						"value": "[parameters('AzureDataLakeStorageteam13_accountKey')]"
+					},
+					"SHIRlink_connectionString": {
+						"value": "[parameters('SHIRlink_connectionString')]"
+					},
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"covid19-synapse-h4zh4tp4fetik-WorkspaceDefaultSqlServer_connectionString": {
+						"value": "[parameters('covid19-synapse-h4zh4tp4fetik-WorkspaceDefaultSqlServer_connectionString')]"
+					},
+					"link3VM_connectionString": {
+						"value": "[parameters('link3VM_connectionString')]"
+					},
+					"sqlvmmetrics_connectionString": {
+						"value": "[parameters('sqlvmmetrics_connectionString')]"
+					},
+					"AzureDataLakeStorageteam13_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorageteam13_properties_typeProperties_url')]"
+					},
+					"covid19-synapse-h4zh4tp4fetik-WorkspaceDefaultStorage_properties_typeProperties_url": {
+						"value": "[parameters('covid19-synapse-h4zh4tp4fetik-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'team13df_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "team13df_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'team13df_ArmTemplate_1')]"
+			]
+		}
+	]
+}
