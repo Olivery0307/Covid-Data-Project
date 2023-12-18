@@ -2,7 +2,7 @@
 	"name": "SQL script 12",
 	"properties": {
 		"content": {
-			"query": "SELECT TOP 100 * FROM dbo.population\nGo",
+			"query": "SELECT TOP (100) [Country]\n,[CountryKey]\n,[Population2020]\n,[Population2021]\n,[Density]\n FROM [dbo].[population]",
 			"metadata": {
 				"language": "sql"
 			},
